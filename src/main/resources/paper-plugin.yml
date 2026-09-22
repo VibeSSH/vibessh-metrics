@@ -1,0 +1,10 @@
+# Hand-written on purpose: the platform is a library and adds no descriptor
+# generator, so a plugin brings its own. Keep `version` in step with
+# gradle.properties (or wire processResources to inject it later).
+name: ServerPulse
+version: "0.1.0"
+main: dev.vibessh.serverpulse.ServerPulsePlugin
+api-version: "1.21"
+author: VibeSSH
+description: "Live TPS, MSPT, memory and players - in game with /pulse, and in your VibeSSH panel."
+website: "https://vibessh.dev"

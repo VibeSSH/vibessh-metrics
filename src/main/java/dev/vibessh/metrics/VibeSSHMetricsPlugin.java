@@ -3,6 +3,7 @@ package dev.vibessh.metrics;
 import dev.rollczi.litecommands.LiteCommands;
 import dev.vibessh.metrics.bar.TpsBar;
 import dev.vibessh.metrics.command.MetricsCommand;
+import dev.vibessh.metrics.config.MessagesConfig;
 import dev.vibessh.metrics.config.MetricsConfig;
 import dev.vibessh.metrics.status.StatusWriter;
 import org.bukkit.command.CommandSender;
@@ -10,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.royalmc.platform.api.ModuleLifecycle;
 import pl.royalmc.platform.component.ComponentFormatter;
 import pl.royalmc.platform.config.ConfigService;
-import pl.royalmc.platform.config.message.PlatformMessagesConfig;
 import pl.royalmc.platform.notice.AudienceNoticeService;
 import pl.royalmc.platform.notice.NoticeServiceProvider;
 import pl.royalmc.platform.paper.command.PaperCommands;
@@ -35,7 +35,7 @@ public final class VibeSSHMetricsPlugin extends JavaPlugin {
 
         ConfigService configs = new ConfigService();
         MetricsConfig config = configs.load(getDataPath(), "config.yml", MetricsConfig.class);
-        PlatformMessagesConfig messages = configs.load(getDataPath(), "messages.yml", PlatformMessagesConfig.class);
+        MessagesConfig messages = configs.load(getDataPath(), "messages.yml", MessagesConfig.class);
         NoticeServiceProvider<CommandSender> notices = new AudienceNoticeService<>(messages, formatter);
 
         StatusWriter statusWriter = new StatusWriter(this, config, getSLF4JLogger());

@@ -1,4 +1,4 @@
-package dev.vibessh.serverpulse.config;
+package dev.vibessh.metrics.config;
 
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
@@ -6,13 +6,13 @@ import eu.okaeri.configs.annotation.CustomKey;
 import eu.okaeri.configs.annotation.Header;
 
 /**
- * ServerPulse's configuration.
+ * VibeSSH Metrics's configuration.
  *
  * <p>Every field carries an explicit {@link CustomKey}: Okaeri's class-wide naming strategy
  * is deprecated, so the kebab-case keys are spelled out here to keep the written YAML stable.
  */
-@Header("ServerPulse - writes a compact status snapshot the VibeSSH panel reads over SSH.")
-public class ServerPulseConfig extends OkaeriConfig {
+@Header("VibeSSH Metrics - writes a compact status snapshot the VibeSSH panel reads over SSH.")
+public class MetricsConfig extends OkaeriConfig {
 
     @Comment("How often the snapshot is written, in seconds.")
     @CustomKey("write-interval-seconds")
@@ -29,7 +29,7 @@ public class ServerPulseConfig extends OkaeriConfig {
     @CustomKey("include-player-names")
     public boolean includePlayerNames = true;
 
-    @Comment("How often the /pulse tpsbar boss bar refreshes, in ticks (20 = once a second).")
+    @Comment("How often the /metrics tpsbar boss bar refreshes, in ticks (20 = once a second).")
     @CustomKey("bossbar-update-ticks")
     public int bossbarUpdateTicks = 20;
 }

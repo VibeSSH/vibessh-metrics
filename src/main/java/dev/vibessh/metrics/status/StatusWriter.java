@@ -1,8 +1,8 @@
-package dev.vibessh.serverpulse.status;
+package dev.vibessh.metrics.status;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.vibessh.serverpulse.config.ServerPulseConfig;
+import dev.vibessh.metrics.config.MetricsConfig;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -39,14 +39,14 @@ public final class StatusWriter implements PlatformModule {
     private static final long BYTES_PER_MB = 1024L * 1024L;
 
     private final Plugin plugin;
-    private final ServerPulseConfig config;
+    private final MetricsConfig config;
     private final Logger logger;
     private final Path statusFile;
     private final Path tempFile;
 
     private ScheduledTask task;
 
-    public StatusWriter(Plugin plugin, ServerPulseConfig config, Logger logger) {
+    public StatusWriter(Plugin plugin, MetricsConfig config, Logger logger) {
         this.plugin = Objects.requireNonNull(plugin, "plugin");
         this.config = Objects.requireNonNull(config, "config");
         this.logger = Objects.requireNonNull(logger, "logger");
@@ -68,7 +68,7 @@ public final class StatusWriter implements PlatformModule {
                 periodTicks,
                 periodTicks);
         if (this.task == null) {
-            throw new PlatformException("ServerPulse could not schedule the status task");
+            throw new PlatformException("VibeSSH Metrics could not schedule the status task");
         }
     }
 
@@ -130,7 +130,7 @@ public final class StatusWriter implements PlatformModule {
             Files.move(this.tempFile, this.statusFile, StandardCopyOption.REPLACE_EXISTING);
         }
         catch (IOException exception) {
-            this.logger.warn("ServerPulse could not write {}: {}", this.statusFile, exception.getMessage());
+            this.logger.warn("VibeSSH Metrics could not write {}: {}", this.statusFile, exception.getMessage());
         }
     }
 

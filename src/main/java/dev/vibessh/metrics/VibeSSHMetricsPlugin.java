@@ -1,10 +1,10 @@
-package dev.vibessh.serverpulse;
+package dev.vibessh.metrics;
 
 import dev.rollczi.litecommands.LiteCommands;
-import dev.vibessh.serverpulse.bar.TpsBar;
-import dev.vibessh.serverpulse.command.PulseCommand;
-import dev.vibessh.serverpulse.config.ServerPulseConfig;
-import dev.vibessh.serverpulse.status.StatusWriter;
+import dev.vibessh.metrics.bar.TpsBar;
+import dev.vibessh.metrics.command.MetricsCommand;
+import dev.vibessh.metrics.config.MetricsConfig;
+import dev.vibessh.metrics.status.StatusWriter;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.royalmc.platform.api.ModuleLifecycle;
@@ -16,7 +16,7 @@ import pl.royalmc.platform.notice.NoticeServiceProvider;
 import pl.royalmc.platform.paper.command.PaperCommands;
 
 /**
- * ServerPulse entry point.
+ * VibeSSH Metrics entry point.
  *
  * <p>The platform gives no base plugin class on purpose, so the wiring is assembled here:
  * load config through {@link ConfigService}, start the {@link StatusWriter} through a
@@ -24,7 +24,7 @@ import pl.royalmc.platform.paper.command.PaperCommands;
  * through {@link PaperCommands}, which comes pre-wired with MiniMessage and the platform's
  * technical replies.
  */
-public final class ServerPulsePlugin extends JavaPlugin {
+public final class VibeSSHMetricsPlugin extends JavaPlugin {
 
     private ModuleLifecycle lifecycle;
     private LiteCommands<CommandSender> commands;
@@ -34,7 +34,7 @@ public final class ServerPulsePlugin extends JavaPlugin {
         ComponentFormatter formatter = ComponentFormatter.standard();
 
         ConfigService configs = new ConfigService();
-        ServerPulseConfig config = configs.load(getDataPath(), "config.yml", ServerPulseConfig.class);
+        MetricsConfig config = configs.load(getDataPath(), "config.yml", MetricsConfig.class);
         PlatformMessagesConfig messages = configs.load(getDataPath(), "messages.yml", PlatformMessagesConfig.class);
         NoticeServiceProvider<CommandSender> notices = new AudienceNoticeService<>(messages, formatter);
 
@@ -46,7 +46,7 @@ public final class ServerPulsePlugin extends JavaPlugin {
         this.lifecycle.enableAll();
 
         this.commands = PaperCommands.builder(this, formatter, notices)
-                .commands(new PulseCommand(statusWriter, tpsBar))
+                .commands(new MetricsCommand(statusWriter, tpsBar))
                 .build();
     }
 

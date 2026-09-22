@@ -1,9 +1,9 @@
-package dev.vibessh.serverpulse.status;
+package dev.vibessh.metrics.status;
 
 import java.util.List;
 
 /**
- * The status snapshot ServerPulse writes to disk and the VibeSSH panel reads over SSH.
+ * The status snapshot VibeSSH Metrics writes to disk and the VibeSSH panel reads over SSH.
  *
  * <p>The record component names are the JSON keys, so renaming one is a breaking change:
  * bump {@link #SCHEMA} and update the panel's reader when that happens. {@code players.names}

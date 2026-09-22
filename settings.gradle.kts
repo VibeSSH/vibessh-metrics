@@ -29,4 +29,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "serverpulse"
+rootProject.name = "vibessh-metrics"

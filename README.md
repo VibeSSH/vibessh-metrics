@@ -1,6 +1,6 @@
-# ServerPulse
+# VibeSSH Metrics
 
-Live TPS, MSPT, memory and players - in game with `/pulse`, and in your VibeSSH panel.
+Live TPS, MSPT, memory and players - in game with `/metrics`, and in your VibeSSH panel.
 
 A Paper plugin built on the [royalmc-platform](../royalmc-platform). It writes a compact
 `status.json` snapshot every few seconds; VibeSSH reads it over SSH and shows a live
@@ -8,9 +8,9 @@ A Paper plugin built on the [royalmc-platform](../royalmc-platform). It writes a
 
 ## What it does
 
-- **`/pulse`** - TPS / MSPT / RAM and per-world entity report in chat.
-- **`/pulse tpsbar`** - toggle a boss bar with live TPS / MSPT / your ping.
-- **`/pulse worst`** - what is eating the tick (stub for now, see roadmap).
+- **`/metrics`** - TPS / MSPT / RAM and per-world entity report in chat.
+- **`/metrics tpsbar`** - toggle a boss bar with live TPS / MSPT / your ping.
+- **`/metrics worst`** - what is eating the tick (stub for now, see roadmap).
 - Writes `.vibessh/status.json` (relative to the server directory) every `write-interval-seconds`.
   The state is read on the main thread, the file is written async and renamed into place, so the
   panel never sees a half-written snapshot.
@@ -30,15 +30,15 @@ Then build the plugin:
 ./gradlew build
 ```
 
-The shaded jar lands in `build/libs/ServerPulse-0.1.0.jar`. Drop it in `plugins/`, restart.
+The shaded jar lands in `build/libs/VibeSSHMetrics-0.1.0.jar`. Drop it in `plugins/`, restart.
 
 ## Layout
 
-- `dev.vibessh.serverpulse.ServerPulsePlugin` - entry point; wires config, the writer and commands.
+- `dev.vibessh.metrics.VibeSSHMetricsPlugin` - entry point; wires config, the writer and commands.
 - `.../status/StatusWriter` - the `PlatformModule` that schedules and writes the snapshot.
 - `.../status/ServerStatus` - the snapshot record; its field names are the JSON keys.
-- `.../config/ServerPulseConfig` - the Okaeri config (`config.yml`).
-- `.../command/PulseCommand` - the `/pulse` command (LiteCommands).
+- `.../config/MetricsConfig` - the Okaeri config (`config.yml`).
+- `.../command/MetricsCommand` - the `/metrics` command (LiteCommands).
 
 ## Config (`config.yml`)
 
@@ -58,7 +58,7 @@ VibeSSH desktop app.
 
 ## Roadmap
 
-- `/pulse worst` - rank entity/chunk hotspots per world.
+- `/metrics worst` - rank entity/chunk hotspots per world.
 - Panel: TPS-drop alert, Vibe AI reading `status.json` for lag diagnosis.
 
 Part of [VibeSSH](https://vibessh.dev).

@@ -1,4 +1,4 @@
-// ServerPulse - Copyright (C) VibeSSH.
+// VibeSSH Metrics - Copyright (C) VibeSSH.
 // Licensed under the GNU General Public License v3.0 or later; see LICENSE.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -39,11 +39,11 @@ dependencies {
 }
 
 tasks.shadowJar {
-    archiveFileName.set("ServerPulse-${project.version}.jar")
+    archiveFileName.set("VibeSSHMetrics-${project.version}.jar")
 
     manifest {
         attributes(
-            "Implementation-Title" to "ServerPulse",
+            "Implementation-Title" to "VibeSSH Metrics",
             "Implementation-Version" to project.version.toString(),
             "License" to "GPL-3.0-or-later",
         )
@@ -51,7 +51,7 @@ tasks.shadowJar {
 
     // Relocate everything the plugin bundles so two RoyalMC plugins on one server
     // cannot fight over library versions. XSeries in particular must be relocated.
-    val libs = "dev.vibessh.serverpulse.libs"
+    val libs = "dev.vibessh.metrics.libs"
     relocate("com.cryptomorin.xseries", "$libs.xseries")
     relocate("dev.rollczi", "$libs.litecommands")
     relocate("eu.okaeri", "$libs.okaeri")

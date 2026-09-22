@@ -1,6 +1,6 @@
-package dev.vibessh.serverpulse.bar;
+package dev.vibessh.metrics.bar;
 
-import dev.vibessh.serverpulse.config.ServerPulseConfig;
+import dev.vibessh.metrics.config.MetricsConfig;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,13 +32,13 @@ import pl.royalmc.platform.component.ComponentFormatter;
 public final class TpsBar implements PlatformModule, Listener {
 
     private final Plugin plugin;
-    private final ServerPulseConfig config;
+    private final MetricsConfig config;
     private final ComponentFormatter formatter;
     private final Map<UUID, BossBar> bars = new HashMap<>();
 
     private ScheduledTask task;
 
-    public TpsBar(Plugin plugin, ServerPulseConfig config, ComponentFormatter formatter) {
+    public TpsBar(Plugin plugin, MetricsConfig config, ComponentFormatter formatter) {
         this.plugin = Objects.requireNonNull(plugin, "plugin");
         this.config = Objects.requireNonNull(config, "config");
         this.formatter = Objects.requireNonNull(formatter, "formatter");
@@ -51,7 +51,7 @@ public final class TpsBar implements PlatformModule, Listener {
         this.task = this.plugin.getServer().getGlobalRegionScheduler()
                 .runAtFixedRate(this.plugin, scheduled -> update(), period, period);
         if (this.task == null) {
-            throw new PlatformException("ServerPulse could not schedule the boss bar task");
+            throw new PlatformException("VibeSSH Metrics could not schedule the boss bar task");
         }
     }
 

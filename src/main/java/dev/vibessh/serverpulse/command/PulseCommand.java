@@ -46,7 +46,7 @@ public final class PulseCommand {
                 + "\n<white>TPS:</white> " + tpsColored(status.tps().m1())
                 + " <gray>(5m " + format(status.tps().m5()) + ", 15m " + format(status.tps().m15()) + ")</gray>"
                 + "\n<white>MSPT:</white> <yellow>" + format(status.msptAvg()) + " ms</yellow>"
-                + "\n<white>Gracze:</white> <aqua>" + status.players().online() + "</aqua><gray>/" + status.players().max() + "</gray>"
+                + "\n<white>Players:</white> <aqua>" + status.players().online() + "</aqua><gray>/" + status.players().max() + "</gray>"
                 + "\n<white>RAM:</white> <aqua>" + status.memory().usedMb() + "</aqua><gray>/" + status.memory().maxMb() + " MB</gray>"
                 + "\n<white>Uptime:</white> <gray>" + (status.server().uptimeSeconds() / 60) + " min</gray>"
                 + worlds;
@@ -56,14 +56,14 @@ public final class PulseCommand {
     public String toggleBar(@Context Player player) {
         boolean shown = this.tpsBar.toggle(player);
         return shown
-                ? "<green>ServerPulse:</green> <gray>pasek TPS włączony. / TPS bar on.</gray>"
-                : "<gray>ServerPulse: pasek TPS wyłączony. / TPS bar off.</gray>";
+                ? "<green>ServerPulse:</green> <gray>TPS bar on.</gray>"
+                : "<gray>ServerPulse: TPS bar off.</gray>";
     }
 
     @Execute(name = "worst")
     public String worst() {
         // Roadmap: rank what is eating the tick (entity / chunk hotspots per world).
-        return "<gray>ServerPulse:</gray> <white>/pulse worst</white> <gray>- wkrótce / coming soon.</gray>";
+        return "<gray>ServerPulse:</gray> <white>/pulse worst</white> <gray>- coming soon.</gray>";
     }
 
     private static String tpsColored(double tps) {

@@ -1,3 +1,7 @@
+// ServerPulse - Copyright (C) VibeSSH.
+// Licensed under the GNU General Public License v3.0 or later; see LICENSE.
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 plugins {
     java
     // Bundles the platform and its transitive libraries into the plugin jar and
@@ -36,6 +40,14 @@ dependencies {
 
 tasks.shadowJar {
     archiveFileName.set("ServerPulse-${project.version}.jar")
+
+    manifest {
+        attributes(
+            "Implementation-Title" to "ServerPulse",
+            "Implementation-Version" to project.version.toString(),
+            "License" to "GPL-3.0-or-later",
+        )
+    }
 
     // Relocate everything the plugin bundles so two RoyalMC plugins on one server
     // cannot fight over library versions. XSeries in particular must be relocated.

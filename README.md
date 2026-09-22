@@ -30,7 +30,7 @@ Then build the plugin:
 ./gradlew build
 ```
 
-The shaded jar lands in `build/libs/VibeSSHMetrics-0.1.0.jar`. Drop it in `plugins/`, restart.
+The shaded jar lands in `build/libs/VibeSSHMetrics-0.1.1.jar`. Drop it in `plugins/`, restart.
 
 ## Layout
 

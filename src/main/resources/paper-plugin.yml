@@ -2,7 +2,7 @@
 # generator, so a plugin brings its own. Keep `version` in step with
 # gradle.properties (or wire processResources to inject it later).
 name: VibeSSHMetrics
-version: "0.1.0"
+version: "0.1.1"
 main: dev.vibessh.metrics.VibeSSHMetricsPlugin
 api-version: "1.21"
 author: VibeSSH
